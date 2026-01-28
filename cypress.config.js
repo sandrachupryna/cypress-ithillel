@@ -1,0 +1,21 @@
+import { defineConfig } from "cypress";
+
+export default defineConfig({
+  e2e: {
+    setupNodeEvents(on, config) {
+      // implement node event listeners here
+    },
+    baseUrl: 'https://qauto.forstudy.space/',
+    defaultCommandTimeout: 5000,
+    // to run examples
+    // specPattern: 'cypress/examples/e2e/**/*.cy.js',
+    // fixturesFolder: 'cypress/examples/fixtures',
+    // supportFile: 'cypress/examples/support/e2e.js',
+    
+    // to run my tests 
+    specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
+    viewportWidth: 1920,
+    viewportHeight: 1080,
+    defaultBrowser: 'chrome',
+  },
+});

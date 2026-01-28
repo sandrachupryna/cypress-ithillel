@@ -1,0 +1,25 @@
+{
+  "name": "cypress-ithillel",
+  "version": "1.0.0",
+  "description": "Repository for learning and completing homework as part of the course at ITHillel school",
+  "homepage": "https://github.com/sandrachupryna/cypress-ithillel#readme",
+  "bugs": {
+    "url": "https://github.com/sandrachupryna/cypress-ithillel/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sandrachupryna/cypress-ithillel.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:open": "cypress open",
+    "cypress:run:demo": "cypress run --spec 'cypress/examples/e2e/1-getting-started/*'"
+  },
+  "devDependencies": {
+    "cypress": "^15.9.0"
+  }
+}
