@@ -17,9 +17,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "cypress:open": "cypress open",
-    "cypress:run:demo": "cypress run --spec 'cypress/examples/e2e/1-getting-started/*'"
+    "cypress:run:demo": "cypress run --spec 'cypress/examples/e2e/1-getting-started/*'",
+    "cypress:run:test": "cypress run"
+
   },
   "devDependencies": {
-    "cypress": "^15.9.0"
+    "cypress": "^15.9.0",
+    "dotenv": "^17.2.3"
   }
 }
