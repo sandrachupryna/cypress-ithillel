@@ -1,11 +1,13 @@
 import { defineConfig } from "cypress";
 import 'dotenv/config';
+import { plugin as cypressGrepPlugin } from '@cypress/grep/plugin'
 
 
 export default defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      cypressGrepPlugin(config)
+      return config    
     },
     baseUrl: 'https://qauto.forstudy.space/',
     defaultCommandTimeout: 5000,
