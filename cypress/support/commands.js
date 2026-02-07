@@ -1,10 +1,14 @@
-Cypress.Commands.add('openHomePageAndLoginByBasicAuth', () => {
-    cy.visit('/', {
+Cypress.Commands.add('visitWithAuth', (url) => {
+    cy.visit(url, {
       auth: {
         username: Cypress.env('username'),
         password: Cypress.env('password'),
       },
     });
+})
+
+Cypress.Commands.add('openHomePageAndLoginByBasicAuth', () => {
+    cy.visitWithAuth('/');
 });
 
 Cypress.Commands.add('clickSignUpButton', () => {
@@ -22,6 +26,39 @@ Cypress.Commands.add('fillLoginFormAndSubmit', (user) => {
     cy.get('app-signin-form #signinPassword').type(user.password, { sensitive: true});
     cy.get('app-signin-modal button').contains('Login').click();
 });
+
+Cypress.Commands.add('ensureUserExistsAndLoginViaSession', (user) => {
+  cy.session(user.email, () => {
+    cy.openHomePageAndLoginByBasicAuth();
+    cy.clickSignUpButton();
+    cy.fillRegistrationFormAndSubmit({ overrides: {
+              signupName: user.name,
+              signupLastName: user.lastName,
+              signupEmail: user.email,
+              signupPassword: user.password,
+              signupRepeatPassword: user.password
+        } 
+      });
+
+    cy.get('.alert').then(($body) => {
+      if ($body.text().includes('User already exists')) {
+        cy.log('User already created. Just login...');
+        cy.get('.close').click();
+        cy.fillLoginFormAndSubmit(user);
+      } else {
+        cy.log('User successfully created');
+      }
+    });
+
+    cy.url().should('include', '/panel/garage');
+  }, {
+    validate() {
+      cy.getCookie('sid').should('exist');
+    },
+    cacheAcrossSpecs: true
+  });
+});
+
 
 Cypress.Commands.add('fillRegistrationForm', ({ overrides = {}, excludedField = null}) => {
     const id = Date.now();
@@ -50,6 +87,11 @@ Cypress.Commands.add('fillRegistrationForm', ({ overrides = {}, excludedField = 
 
 Cypress.Commands.add('getRegistrationButton', () => {
     cy.get('app-signup-modal button').contains('Register');
+});
+
+Cypress.Commands.add('fillRegistrationFormAndSubmit', (overrides = {}) => {
+  cy.fillRegistrationForm(overrides);
+  cy.getRegistrationButton().click();
 });
 
 Cypress.Commands.add('getErrorMessage', (field) => {

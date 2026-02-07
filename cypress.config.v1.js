@@ -1,12 +1,20 @@
 import { defineConfig } from "cypress";
 import 'dotenv/config';
-import { plugin as cypressGrepPlugin } from '@cypress/grep/plugin'
+import { plugin as cypressGrepPlugin } from '@cypress/grep/plugin';
+import fs from 'fs';
 
 
 export default defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
-      cypressGrepPlugin(config)
+      cypressGrepPlugin(config);
+      const envData = JSON.parse(fs.readFileSync('./cypress.env.v1.json', 'utf8'));
+
+      config.env = {
+        ...config.env,
+        ...envData
+      };
+
       return config    
     },
     baseUrl: 'https://qauto.forstudy.space/',
@@ -25,5 +33,12 @@ export default defineConfig({
       username: process.env.BASIC_AUTH_USERNAME,
       password: process.env.BASIC_AUTH_PASSWORD,
     },
+  },
+  reporter: 'mochawesome',
+  reporterOptions: {
+    reportDir: 'cypress/results',
+    overwrite: false,
+    html: false,
+    json: true,
   },
 });

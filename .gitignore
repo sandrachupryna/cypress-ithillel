@@ -70,6 +70,9 @@ web_modules/
 .env.*
 !.env.example
 
+#cypress environment variables
+cypress.env.*
+
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache
