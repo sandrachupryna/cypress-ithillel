@@ -15,9 +15,9 @@ Cypress.Commands.add('clickSignUpButton', () => {
     cy.get('.hero-descriptor_btn').click();
 });
 
-Cypress.Commands.add('getRegistrationField', (field) => {
+Cypress.Commands.add('getRegistrationField', (field) => 
     cy.get(`app-signup-form form #${field}`)
-});
+);
 
 Cypress.Commands.add('fillLoginFormAndSubmit', (user) => {
     cy.openHomePageAndLoginByBasicAuth();
