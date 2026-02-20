@@ -116,3 +116,13 @@ Cypress.Commands.overwrite('type', (originalFn, element, text, options) => {
 
   return originalFn(element, text, options)
 })
+
+Cypress.Commands.add('saveCarId', (id) => {
+  const ids = Cypress.env('createdCarIds') || [];
+  ids.push(id);
+  Cypress.env('createdCarIds', ids);
+});
+
+Cypress.Commands.add('clearSavedCarIds', () => {
+  Cypress.env('createdCarIds', []);
+});

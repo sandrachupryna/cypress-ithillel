@@ -1,0 +1,31 @@
+{
+   "bmw":[
+      {
+         "mileage":5100,
+         "liters":20,
+         "totalCost":100
+      },
+      {
+         "mileage":5300,
+         "liters":15,
+         "totalCost":80
+      },
+      {
+         "mileage":5500,
+         "liters":18,
+         "totalCost":90
+      }
+   ],
+   "audi":[
+      {
+         "mileage":1100,
+         "liters":10,
+         "totalCost":50
+      },
+      {
+         "mileage":1300,
+         "liters":12,
+         "totalCost":60
+      }
+   ]
+}
