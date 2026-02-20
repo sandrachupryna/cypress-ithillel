@@ -47,6 +47,13 @@ class GaragePage extends BasePage {
       }
     });
   }
+
+  createCar(carData) {
+    this.openAddCarModal()
+      .fillCar(carData)
+      .clickAddButton()
+      .shouldNotExist();
+  };
 }
 
 export default new GaragePage();
