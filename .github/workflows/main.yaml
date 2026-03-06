@@ -37,3 +37,10 @@ jobs:
           name: mochawesome-report
           path: mochawesome-report
           retention-days: 7
+
+      - name: Deploy report to gh-pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.ACCESS_TOKEN }}
+          publish_dir: mochawesome-report
