@@ -8,7 +8,11 @@ export default defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
       cypressGrepPlugin(config);
-      const envData = JSON.parse(fs.readFileSync('./cypress.env.v1.json', 'utf8'));
+      let envData = {};
+
+      if (fs.existsSync('./cypress.env.v1.json')) { //for local runs
+        envData = JSON.parse(fs.readFileSync('./cypress.env.v1.json', 'utf8'));
+      }
 
       config.env = {
         ...config.env,
