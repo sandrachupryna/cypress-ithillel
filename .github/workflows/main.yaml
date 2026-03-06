@@ -24,6 +24,10 @@ jobs:
         env:
           BASIC_AUTH_USERNAME: ${{ secrets.BASIC_AUTH_USERNAME }}
           BASIC_AUTH_PASSWORD: ${{ secrets.BASIC_AUTH_PASSWORD }}
+          CYPRESS_testUserName: NameFirst
+          CYPRESS_testUserLastName: LastNameFirst
+          CYPRESS_testUserEmail: ${{ secrets.TEST_USER_EMAIL }}
+          CYPRESS_testUserPassWord: ${{ secrets.TEST_USER_PASSWORD }}
         run: npm run test:v1:mochawesome:full
       
       # - name: Upload report
